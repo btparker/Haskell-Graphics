@@ -23,9 +23,13 @@ dot (Vector3 x y z) (Vector3 a b c) = x*a + b*y + c*z
 cross :: Vector3 -> Vector3 -> Vector3
 cross (Vector3 a b c) (Vector3 x y z) = (Vector3 (b*z + c*y) (-1*(a*z + c*x)) (a*y + b*x))
 
-sq_mag :: Vector3 -> Double
-sq_mag v = v `dot` v
-
 mag :: Vector3 -> Double
 mag = sqrt . sq_mag
 
+sq_mag :: Vector3 -> Double
+sq_mag v = v `dot` v
+
+normalize :: Vector3 -> Vector3
+normalize v
+  | (mag v) /= 0 = mult v (1 / mag v) 
+  | otherwise    = (Vector3 0 0 0)

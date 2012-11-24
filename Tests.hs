@@ -8,6 +8,8 @@ v2 = Vector3 5.0 5.0 5.0
 v3 = Vector3 1 1 1
 v4 = Vector3 2 2 2
 v5 = Vector3 (-1) (-1) (-1)
+v6 = Vector3 3 (-4) (-1)
+v7 = Vector3 0 5 2
 
 runtests = do
   -- ** Vector3 Tests ** --
@@ -30,4 +32,21 @@ runtests = do
   
   -- Negation Tests
   putStrLn "4: Negation Tests"
-  assertTrue ((neg v3)==v5) "-- 4.1 - Negate"
+  assertTrue ((neg v3)==v5) "-- 4.1 - Negate positive"
+  assertTrue ((neg v5)==v3) "-- 4.2 - Negate negative"
+  
+  -- Multiplication Tests
+  putStrLn "5: Multiplication Tests"
+  assertTrue ((v3 `mult` 5)==v1) "-- 5.1 - Vector multiply by positive scalar"
+  assertTrue ((v3 `mult` (-1))==v5) "-- 5.2 - Vector multiply by negative scalar"
+  
+  -- Dot product Tests
+  putStrLn "6: Dot Product Tests"
+  
+  -- Cross product Tests
+
+  -- Magnitude Tests  
+
+  -- Squared Magnitude Tests
+
+  -- Normalization Tests
