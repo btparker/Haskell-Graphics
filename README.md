@@ -6,6 +6,7 @@ Implementation of a raytracer (and more to come maybe) with Haskell
 configure cabal
 sudo apt-get install cabal
 cabal configure --enable-tests
+cabal update && cabal install hspec
 
 build project
 cabal build

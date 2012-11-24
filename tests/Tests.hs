@@ -1,5 +1,7 @@
 module Tests where
-import TestFramework
+import Test.Hspec
+import Test.QuickCheck
+import Control.Exception (evaluate)
 import Vector3
 
 v0 = Vector3 0 0 0
@@ -13,28 +15,38 @@ xUnit = Vector3 1 0 0
 yUnit = Vector3 0 1 0
 zUnit = Vector3 0 0 1
 
-main = do
-  runtests
-
-runtests = do
+main :: IO ()
+main = hspec $ do
   -- ** Vector3 Tests ** --
   
   -- Equality Tests
-  putStrLn "1: Equality Tests"
-  assertTrue (v0==v0) "-- 1.1 - Vector3 equal to self"
-  assertTrue (v1==v2) "-- 1.2 - Vector3 equal to int init and float init"  
-  assertFalse (v0==v1) "-- 1.3 - Vector3 not equal to two unequal Vector3"  
+  describe "Vectors3 (Equality)" $ do
+    it "should be equal to itself" $ do
+      v0==v0 `shouldBe` True
+    
+    it "should be equal between ints and floats" $ do
+      v1==v2 `shouldBe` True
+      
+    it "should be not equal if vectors are not equal" $ do
+      v0==v1 `shouldBe` False
 
   -- Addition Tests
-  putStrLn "2: Addition Tests"
-  assertTrue ((v3 `add` v3)==v4) "-- 2.1 - Vector3 add same"
-  assertTrue ((v3 `add` v5)==v0) "-- 2.2 - Vector3 add negative"
+  describe "Vectors3 (Addition)" $ do
+    it "should add the same vector" $ do
+      (v3 `add` v3) `shouldBe` v4
+      
+    it "should add negative vectors" $ do
+      (v3 `add` v5) `shouldBe` v0
   
   -- Subtraction Tests
-  putStrLn "3: Subtraction Tests"
-  assertTrue ((v3 `sub` v3)==v0) "-- 3.1 - Vector3 sub same"
-  assertTrue ((v3 `sub` v5)==v4) "-- 3.2 - Vector3 sub negative"
+  describe "Vector3 (Subtraction)" $ do
+    it "should subtract the same vector" $ do
+      (v3 `sub` v3) `shouldBe` v0
+      
+    it "should subtract negative vectors" $ do
+      (v3 `sub` v5) `shouldBe` v4
   
   -- Negation Tests
-  putStrLn "4: Negation Tests"
-  assertTrue ((neg v3)==v5) "-- 4.1 - Negate"
+  describe "Vector3 (Negation)" $ do
+    it "should negate vector" $ do
+      (neg v3) `shouldBe` v5
