@@ -1,0 +1,7 @@
+name: Haskell-Graphics
+version: 0.0.1
+
+library
+  build-depends:	base
+  exposed-modules:	HaskellGraphics
+  ghc-options:		-Wall

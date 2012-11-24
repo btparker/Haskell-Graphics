@@ -9,6 +9,13 @@ v3 = Vector3 1 1 1
 v4 = Vector3 2 2 2
 v5 = Vector3 (-1) (-1) (-1)
 
+xUnit = Vector3 1 0 0
+yUnit = Vector3 0 1 0
+zUnit = Vector3 0 0 1
+
+main = do
+  runtests
+
 runtests = do
   -- ** Vector3 Tests ** --
   
