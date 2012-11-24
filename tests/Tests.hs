@@ -10,6 +10,8 @@ v2 = Vector3 5.0 5.0 5.0
 v3 = Vector3 1 1 1
 v4 = Vector3 2 2 2
 v5 = Vector3 (-1) (-1) (-1)
+v6 = Vector3 3 (-4) (-1)
+v7 = Vector3 0 5 2
 
 xUnit = Vector3 1 0 0
 yUnit = Vector3 0 1 0
@@ -50,3 +52,14 @@ main = hspec $ do
   describe "Vector3 (Negation)" $ do
     it "should negate vector" $ do
       (neg v3) `shouldBe` v5
+      
+    it "should negate (negative) vector" $ do
+      (neg v5) `shouldBe` v3
+  
+  -- Multiplication Tests
+  describe "Vector3 (Multiplication)" $ do
+    it "should multiply by positive scalar" $ do
+      (v3 `mult` 5) `shouldBe` v1
+      
+    it "should multiply by negative scalar" $ do
+      (v3 `mult` (-1)) `shouldBe` v5

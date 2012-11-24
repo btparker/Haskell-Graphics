@@ -1,7 +1,7 @@
 module TestFramework where
 assertTrue :: Bool -> String -> IO ()
 assertTrue x claim = if x
-                     then putStrLn claim
+                     then putStrLn $ claim ++ " *** PASSED"
                      else putStrLn $ "*** Untrue: " ++ claim   
                                                                                 
 assertFalse :: Bool -> String -> IO ()
